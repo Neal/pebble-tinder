@@ -1,0 +1,18 @@
+{
+	"TYPE": [
+		"ERROR",
+		"REC",
+		"IMAGE"
+	],
+	"METHOD": [
+		"ERROR",
+		"DATA",
+		"BEGIN",
+		"END",
+		"REQUESTREC",
+		"LIKE",
+		"PASS",
+		"BUFFERSIZE",
+		"READY"
+	]
+}

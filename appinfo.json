@@ -1,0 +1,68 @@
+{
+	"uuid": "c8badf6d-c504-4b87-99ff-c4236005b9ed",
+	"shortName": "Tinder",
+	"longName": "Tinder",
+	"companyName": "Neal",
+	"versionCode": 1,
+	"versionLabel": "0.1",
+	"capabilities": [ "configurable", "location" ],
+	"watchapp": {
+		"watchface": false
+	},
+	"appKeys": {
+		"type": 0,
+		"method": 1,
+		"index": 2,
+		"name": 3,
+		"distance": 4,
+		"bio": 5,
+		"commlikes": 6,
+		"commfriends": 7,
+		"image": 8
+	},
+	"resources": {
+		"media": [
+			{
+				"menuIcon": true,
+				"type": "png",
+				"name": "IMAGE_MENU_ICON",
+				"file": "images/menu_icon.png"
+			},
+			{
+				"type": "png",
+				"name": "IMAGE_LOGO",
+				"file": "images/logo.png"
+			},
+			{
+				"type": "png",
+				"name": "IMAGE_FRIENDS",
+				"file": "images/friends.png"
+			},
+			{
+				"type": "png",
+				"name": "IMAGE_LIKES",
+				"file": "images/likes.png"
+			},
+			{
+				"type": "png",
+				"name": "IMAGE_LIKE",
+				"file": "images/like.png"
+			},
+			{
+				"type": "png",
+				"name": "IMAGE_INFO",
+				"file": "images/info.png"
+			},
+			{
+				"type": "png",
+				"name": "IMAGE_PASS",
+				"file": "images/pass.png"
+			},
+			{
+				"type": "png",
+				"name": "IMAGE_ERROR",
+				"file": "images/error.png"
+			}
+		]
+	}
+}
