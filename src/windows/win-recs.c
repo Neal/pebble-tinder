@@ -147,7 +147,7 @@ static void select_single_click_handler(ClickRecognizerRef recognizer, Window *w
 }
 
 static void select_long_click_handler(ClickRecognizerRef recognizer, Window *window) {
-	win_options_push();
+	// win_options_push();
 }
 
 static void up_single_click_handler(ClickRecognizerRef recognizer, Window *window) {
