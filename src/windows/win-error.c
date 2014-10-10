@@ -34,7 +34,7 @@ void win_error_push(void) {
 }
 
 void win_error_deinit(void) {
-	gbitmap_destroy(error_bitmap);
+	gbitmap_destroy_safe(error_bitmap);
 	window_destroy_safe(window);
 }
 
@@ -63,6 +63,6 @@ static void window_load(Window *window) {
 }
 
 static void window_unload(Window *window) {
-	text_layer_destroy(text_layer);
-	bitmap_layer_destroy(error_bitmap_layer);
+	text_layer_destroy_safe(text_layer);
+	bitmap_layer_destroy_safe(error_bitmap_layer);
 }

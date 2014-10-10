@@ -39,8 +39,8 @@ void win_profile_push(void) {
 }
 
 void win_profile_deinit(void) {
-	gbitmap_destroy(likes_bitmap);
-	gbitmap_destroy(friends_bitmap);
+	gbitmap_destroy_safe(likes_bitmap);
+	gbitmap_destroy_safe(friends_bitmap);
 	window_destroy_safe(window);
 }
 
@@ -111,8 +111,8 @@ static void window_load(Window *window) {
 
 static void window_unload(Window *window) {
 	scroll_layer_destroy_safe(scroll_layer);
-	bitmap_layer_destroy(likes_bitmap_layer);
-	bitmap_layer_destroy(friends_bitmap_layer);
+	bitmap_layer_destroy_safe(likes_bitmap_layer);
+	bitmap_layer_destroy_safe(friends_bitmap_layer);
 	text_layer_destroy_safe(name_text_layer);
 	text_layer_destroy_safe(distance_text_layer);
 	text_layer_destroy_safe(bio_text_layer);

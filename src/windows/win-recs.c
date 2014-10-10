@@ -67,10 +67,10 @@ void win_recs_init(void) {
 }
 
 void win_recs_deinit(void) {
-	gbitmap_destroy(logo_bitmap);
-	gbitmap_destroy(like_bitmap);
-	gbitmap_destroy(info_bitmap);
-	gbitmap_destroy(pass_bitmap);
+	gbitmap_destroy_safe(logo_bitmap);
+	gbitmap_destroy_safe(like_bitmap);
+	gbitmap_destroy_safe(info_bitmap);
+	gbitmap_destroy_safe(pass_bitmap);
 	destroy_property_animation(&actionbar_prop_animation);
 	destroy_property_animation(&loading_prop_animation);
 	win_options_deinit();
