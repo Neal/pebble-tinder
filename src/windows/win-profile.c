@@ -3,6 +3,8 @@
 #include "libs/pebble-assist.h"
 #include "tinder.h"
 
+static void select_single_click_handler(ClickRecognizerRef recognizer, void *context);
+static void click_config_provider(void *context);
 static void window_load(Window *window);
 static void window_unload(Window *window);
 
@@ -47,10 +49,21 @@ void win_profile_reload_data_and_mark_dirty(void) {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
+static void select_single_click_handler(ClickRecognizerRef recognizer, void *context) {
+	window_stack_pop(true);
+}
+
+static void click_config_provider(void *context) {
+	window_single_click_subscribe(BUTTON_ID_SELECT, select_single_click_handler);
+}
+
 static void window_load(Window *window) {
 	scroll_layer = scroll_layer_create(GRect(0, 52, 144, 120));
-	scroll_layer_set_click_config_onto_window(scroll_layer, window);
 	scroll_layer_set_content_size(scroll_layer, GSize(144, 120));
+	scroll_layer_set_click_config_onto_window(scroll_layer, window);
+	scroll_layer_set_callbacks(scroll_layer, (ScrollLayerCallbacks) {
+		.click_config_provider = click_config_provider,
+	});
 	scroll_layer_add_to_window(scroll_layer, window);
 
 	likes_bitmap_layer = bitmap_layer_create(GRect(127, 10, 16, 12));
