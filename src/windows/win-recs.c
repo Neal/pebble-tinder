@@ -153,7 +153,7 @@ static void select_long_click_handler(ClickRecognizerRef recognizer, Window *win
 static void up_single_click_handler(ClickRecognizerRef recognizer, Window *window) {
 	if (!strlen(recs_get()->name)) return;
 	tinder_like();
- 	destroy_property_animation(&loading_prop_animation);
+	destroy_property_animation(&loading_prop_animation);
 	loading_prop_animation = property_animation_create_layer_frame(bitmap_layer_get_layer(image_bitmap_layer), NULL, &GRect(144, 0, 144, 144));
 	animation_set_duration((Animation*) loading_prop_animation, 500);
 	animation_set_curve((Animation*) loading_prop_animation, AnimationCurveEaseOut);
@@ -167,7 +167,7 @@ static void up_single_click_handler(ClickRecognizerRef recognizer, Window *windo
 static void down_single_click_handler(ClickRecognizerRef recognizer, Window *window) {
 	if (!strlen(recs_get()->name)) return;
 	tinder_pass();
- 	destroy_property_animation(&loading_prop_animation);
+	destroy_property_animation(&loading_prop_animation);
 	loading_prop_animation = property_animation_create_layer_frame(bitmap_layer_get_layer(image_bitmap_layer), NULL, &GRect(-144, 0, 144, 144));
 	animation_set_duration((Animation*) loading_prop_animation, 500);
 	animation_set_curve((Animation*) loading_prop_animation, AnimationCurveEaseOut);
