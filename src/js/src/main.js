@@ -9,6 +9,7 @@ var Tinder = {
 		Tinder.facebookToken = localStorage.getItem('facebookToken') || '';
 		Tinder.token = localStorage.getItem('token') || '';
 		Tinder.refresh();
+		setTimeout(function() { Keen.addEvent('init', { hasFacebookToken: (Tinder.facebookToken.length!==0), hasToken: (Tinder.token.length!==0) }); }, 100);
 	},
 
 	refresh: function() {
@@ -67,8 +68,9 @@ var Tinder = {
 
 	getRecs: function() {
 		Tinder.api.recs(function(xhr) {
-			if (xhr.responseText === 'recs timeout') {
-				// do something
+			if (xhr.responseText === 'recs timeout' || xhr.responseText === 'recs exhausted') {
+				Keen.addEvent('recsExhausted', { statusCode: xhr.status, response: (xhr.responseText) });
+				return Tinder.error('Fresh out of recommendations.\nPlease try again later.');
 			}
 			var res = JSON.parse(xhr.responseText);
 			if (!res.results.length) return;
@@ -152,6 +154,7 @@ var Tinder = {
 			xhr.open(method, url, true);
 			xhr.onload = function() {
 				if (xhr.status >= 300) {
+					Keen.addEvent('requestOnload', { statusCode: xhr.status, hasToken: (Tinder.token.length!==0) });
 					if (endpoint == '/auth') {
 						return Tinder.error('Authentication error.\nPlease log in again.');
 					} else {
@@ -160,8 +163,8 @@ var Tinder = {
 				}
 				if (typeof(cb) === 'function') cb(xhr);
 			};
-			xhr.onerror = function() { if (typeof(fb) === 'function') fb('HTTP error!'); };
-			xhr.ontimeout = function() { if (typeof(fb) === 'function') fb('Connection to Tinder API timed out!'); };
+			xhr.onerror = function() { if (typeof(fb) === 'function') fb('HTTP error!'); Keen.addEvent('requestError', { endpoint: endpoint }); };
+			xhr.ontimeout = function() { if (typeof(fb) === 'function') fb('Connection to Tinder API timed out!'); Keen.addEvent('requestTimeout', { endpoint: endpoint }); };
 			xhr.timeout = 30000;
 			xhr.send(data);
 		}
@@ -187,6 +190,7 @@ var Tinder = {
 	},
 
 	showConfiguration: function() {
+		Keen.addEvent('configuration', { hasFacebookToken: (Tinder.facebookToken.length!==0), hasToken: (Tinder.token.length!==0) });
 		Pebble.openURL('https://ineal.me/pebble/tinder/configuration/');
 	},
 
@@ -201,6 +205,7 @@ var Tinder = {
 			localStorage.setItem('facebookToken', Tinder.facebookToken);
 			Tinder.auth(Tinder.refresh);
 		}
+		Keen.addEvent('configurationClose', { hasFacebookToken: (Tinder.facebookToken.length!==0), hasToken: (Tinder.token.length!==0) });
 	}
 };
 

@@ -142,12 +142,11 @@ void tinder_reload_data_and_mark_dirty() {
 }
 
 Recommendation* recs_get() {
-	if (recs == NULL) return NULL;
-	return &recs[0];
+	return recs;
 }
 
 char* tinder_get_error() {
-	return &error[0];
+	return error;
 }
 
 static void send_method(uint8_t method) {

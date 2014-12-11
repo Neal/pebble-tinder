@@ -20,6 +20,10 @@
 		"commfriends": 7,
 		"image": 8
 	},
+	"config": {
+		"keen": { "projectId": "54532b6733e4067481486f84", "writeKey": "ddcfa4ff6228114a124d7672fd5093c1cf9afc587e66ef961a955afdbc315defa67572acd3226f7b3c588e41c09500e76b024a9d6be48b827b7d698e5950c284c5cadfdf3bc0aa7a8ab5836dd1b2be37a7e99057cdd895e88cec45ff12cf154751df21ee43815d8e301f67aba862f3df" }
+	},
+	"debug": true,
 	"resources": {
 		"media": [
 			{
